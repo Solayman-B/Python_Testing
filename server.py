@@ -1,5 +1,8 @@
 import json
 from flask import Flask,render_template,request,redirect,flash,url_for
+import logging
+logger = logging.getLogger(__name__)
+
 
 
 def loadClubs():
@@ -26,8 +29,15 @@ def index():
 
 @app.route('/showSummary',methods=['POST'])
 def showSummary():
-    club = [club for club in clubs if club['email'] == request.form['email']][0]
-    return render_template('welcome.html',club=club,competitions=competitions)
+    try:
+        club = [club for club in clubs if club['email'] == request.form['email']][0]
+        logger.debug(club)
+    except IndexError:
+        flash("Sorry, that email wasn't found")
+        return render_template('index.html')
+    else:
+        return render_template('welcome.html', club=club, competitions=competitions)
+
 
 
 @app.route('/book/<competition>/<club>')
@@ -57,3 +67,4 @@ def purchasePlaces():
 @app.route('/logout')
 def logout():
     return redirect(url_for('index'))
+
