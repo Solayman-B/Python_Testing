@@ -18,3 +18,12 @@ def test_invalid_email(client):
 	response = client.post("/showSummary", data={'email':'wrong@simplylift.co'})
 	data = response.data.decode()
 	assert "Welcome to the GUDLFT Registration Portal!" in data
+
+def test_enought_points_to_purchase(client, competitions_data, clubs_data):
+	response = client.post("/purchasePlaces", data={
+		"competition":"Spring Festival",
+		"club":"Simply Lift",
+		"places":"15",
+													})
+	data = response.data.decode()
+	assert "You don&#39;t have enough points to purchase this amount of places !" in data
