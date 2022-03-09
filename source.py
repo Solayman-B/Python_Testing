@@ -14,9 +14,7 @@ def loadCompetitions():
          return listOfCompetitions
 
 
-# def create_app(config):
 app = Flask(__name__)
-# app.config.from_object(config)
 app.secret_key = 'something_special'
 competitions = loadCompetitions()
 clubs = loadClubs()
@@ -67,7 +65,7 @@ def purchasePlaces():
     else:
         competition['numberOfPlaces'] = int(competition['numberOfPlaces']) - placesRequired
         availablePoints = availablePoints - placesRequired
-        flash('Great-booking complete!')
+        flash('Great-booking complete !')
         return render_template('welcome.html', club=club, placesRequired=placesRequired, competitions=competitions, availablePoints=availablePoints)
 
 
@@ -77,5 +75,3 @@ def purchasePlaces():
 @app.route('/logout')
 def logout():
     return redirect(url_for('index'))
-
-# return app
