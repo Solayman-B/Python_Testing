@@ -1,5 +1,4 @@
 from source import loadClubs, loadCompetitions
-from datetime import datetime
 
 """Importation tests"""
 def test_importing_list_of_clubs():
@@ -59,15 +58,3 @@ def test_buying_successfully_buying_places(client):
 													})
 	data = response.data.decode()
 	assert "Great-booking complete !" in data
-
-
-"""Date of competition tests"""
-def test_past_competition_is_forbidden(client):
-	response = client.post("/purchasePlaces", data={
-		"competition": "Spring Festival",
-		"club": "Simply Lift",
-		"places": "5",
-	})
-	data = response.data.decode()
-	assert "Great-booking complete !" in data
-yourdatetime.date() < datetime.today().date()
