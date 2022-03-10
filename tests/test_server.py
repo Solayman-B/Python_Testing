@@ -1,4 +1,6 @@
 from source import loadClubs, loadCompetitions
+from datetime import datetime
+
 
 """Importation tests"""
 def test_importing_list_of_clubs():
@@ -58,3 +60,15 @@ def test_buying_successfully_buying_places(client):
 													})
 	data = response.data.decode()
 	assert "Great-booking complete !" in data
+
+
+"""Date of competition tests"""
+def test_competition_didnt_happen_yet(client):
+	response = client.get("/book/Spring Festival/Simply Lift")
+	data = response.data.decode()
+	assert "How many places?" in data
+
+def test_competition_already_happened(client):
+	response = client.get("/book/Fall Classic/Simply Lift")
+	data = response.data.decode()
+	assert "You can&#39;t book places if the competition already started" in data
