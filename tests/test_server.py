@@ -1,5 +1,4 @@
 from source import loadClubs, loadCompetitions
-from datetime import datetime
 
 
 """Importation tests"""
