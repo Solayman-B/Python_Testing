@@ -19,7 +19,7 @@ app = Flask(__name__)
 app.secret_key = 'something_special'
 competitions = loadCompetitions()
 clubs = loadClubs()
-
+bookedPlaces = []
 
 @app.route('/')
 def index():
@@ -67,14 +67,17 @@ def purchasePlaces():
     elif int(competition['numberOfPlaces'])-placesRequired < 0:
         flash("There isn't enough places left for this competitions !")
         return render_template('welcome.html', club=club, competitions=competitions)
-    elif placesRequired > 12:
-        flash("You can't purchase more than 12 places !")
-        return render_template('welcome.html', club=club, competitions=competitions)
     else:
-        competition['numberOfPlaces'] = int(competition['numberOfPlaces']) - placesRequired
-        club["points"] = availablePoints - placesRequired
-        flash('Great-booking complete !')
-        return render_template('welcome.html', club=club, placesRequired=placesRequired, competitions=competitions, availablePoints=availablePoints)
+        bookedPlaces.append(placesRequired)
+        if sum(bookedPlaces) >12:
+            flash("You can't purchase more than 12 places !")
+            bookedPlaces.remove(placesRequired)
+            return render_template('welcome.html', club=club, competitions=competitions)
+        else:
+            competition['numberOfPlaces'] = int(competition['numberOfPlaces']) - placesRequired
+            club["points"] = availablePoints - placesRequired
+            flash('Great-booking complete !')
+            return render_template('welcome.html', club=club, placesRequired=placesRequired, competitions=competitions, availablePoints=availablePoints)
 
 
 # TODO: Add route for points display
