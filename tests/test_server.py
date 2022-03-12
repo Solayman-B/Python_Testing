@@ -84,6 +84,6 @@ def test_amount_of_points_is_changing_after_purchase(client):
 
 """Displaying the list of clubs' points test"""
 def test_displaying_list_of_clubs_points(client):
-	response = client.get("/book/Spring Festival/Simply Lift")
+	response = client.get("/points")
 	data = response.data.decode()
 	assert "Number of points" in data
