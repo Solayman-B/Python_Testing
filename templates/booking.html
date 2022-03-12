@@ -13,16 +13,5 @@
         <label for="places">How many places?</label><input type="number" name="places" id=""/>
         <button type="submit">Book</button>
     </form>
-
-    <h3>Clubs' points:</h3>
-    <ul>
-        {% for clu in clubs%}
-        <li>
-            {{clu['name']}}<br />
-            Number of points: {{clu['points']}}
-        </li>
-        <hr />
-        {% endfor %}
-    </ul>
 </body>
 </html>
