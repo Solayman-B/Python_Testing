@@ -46,7 +46,7 @@ def book(competition,club):
     availablePoints = int(foundClub["points"])
     if foundClub and foundCompetition:
         if competitionDate > datetime.today():
-            return render_template('booking.html',club=foundClub, competition=foundCompetition)
+            return render_template('booking.html',club=foundClub, clubs=clubs, competition=foundCompetition)
         else:
             flash("You can't book places if the competition already started")
             return render_template('welcome.html', club=foundClub, competitions=competitions)
