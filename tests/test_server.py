@@ -72,3 +72,13 @@ def test_competition_already_happened(client):
 	response = client.get("/book/Fall Classic/Simply Lift")
 	data = response.data.decode()
 	assert "You can&#39;t book places if the competition already started" in data
+
+"""Changing the amount of points tests"""
+def test_amount_of_points_is_changing_after_purchase(client):
+	response = client.post("/purchasePlaces", data={
+		"competition": "Spring Festival",
+		"club": "She Lifts",
+		"places": "2",
+	})
+	data = response.data.decode()
+	assert "Points available: 10" in data
