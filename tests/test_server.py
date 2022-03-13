@@ -28,7 +28,7 @@ def test_club_has_enought_points_to_purchase(client):
 	response = client.post("/purchasePlaces", data={
 		"competition":"Spring Festival",
 		"club":"Iron Temple",
-		"places":"5",
+		"places":"5"
 													})
 	data = response.data.decode()
 	assert "You don&#39;t have enough points to purchase this amount of places !" in data
