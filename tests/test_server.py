@@ -37,7 +37,7 @@ def test_there_is_enought_places_for_a_competition(client):
 	response = client.post("/purchasePlaces", data={
 		"competition":"Fall Classic",
 		"club":"Simply Lift",
-		"places":"14",
+		"places":"7",
 													})
 	data = response.data.decode()
 	assert "There isn&#39;t enough places left for this competitions !" in data
@@ -80,7 +80,7 @@ def test_amount_of_points_is_changing_after_purchase(client):
 		"places": "2",
 	})
 	data = response.data.decode()
-	assert "Points available: 10" in data
+	assert "Points available: 8" in data
 
 """Displaying the list of clubs' points test"""
 def test_displaying_list_of_clubs_points(client):
