@@ -65,7 +65,7 @@ def purchase_places():
     ]
     club = [c for c in clubs if c["name"] == request.form["club"]][0]
     available_points = int(club["points"])
-    i = 2  # i is the coefficient of placeRequired/available_points
+    i = 3  # i is the coefficient of placeRequired/available_points
     places_required = int(request.form["places"])
     if available_points < places_required * i:
         flash("You don't have enough points to purchase this amount of places !")

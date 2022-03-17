@@ -110,7 +110,7 @@ def test_amount_of_points_is_changing_after_purchase(client):
         },
     )
     data = response.data.decode()
-    assert "Points available: 8" in data
+    assert "Points available: 6" in data
 
 
 """Displaying the list of clubs' points test"""
